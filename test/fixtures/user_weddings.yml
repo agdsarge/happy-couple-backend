@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  wedding_id: 1
+  user_id: 1
+  is_admin: 
+  accommodation_id: 1
+  attending_status: 1
+
+two:
+  wedding_id: 1
+  user_id: 1
+  is_admin: 
+  accommodation_id: 1
+  attending_status: 1

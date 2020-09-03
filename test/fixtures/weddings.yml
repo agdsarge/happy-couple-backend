@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  latitude: 1.5
+  longitude: 1.5
+  registry_link: MyString
+  wedding_date: 2020-09-03
+  wedding_slug: MyString
+  wedding_theme_id: 1
+
+two:
+  latitude: 1.5
+  longitude: 1.5
+  registry_link: MyString
+  wedding_date: 2020-09-03
+  wedding_slug: MyString
+  wedding_theme_id: 1

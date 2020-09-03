@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_02_203725) do
+ActiveRecord::Schema.define(version: 2020_09_03_185005) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,57 @@ ActiveRecord::Schema.define(version: 2020_09_02_203725) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "addresses", force: :cascade do |t|
+    t.string "street_address"
+    t.string "city"
+    t.string "state"
+    t.string "country"
+    t.integer "zip_code"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
+  end
+
+  create_table "albums", force: :cascade do |t|
+    t.integer "wedding_id"
+    t.string "title"
+    t.boolean "is_bio"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "invitations", force: :cascade do |t|
+    t.string "title"
+    t.string "body"
+    t.integer "wedding_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "photos", force: :cascade do |t|
+    t.integer "album_id"
+    t.string "caption"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "user_photos", force: :cascade do |t|
+    t.integer "photo_id"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "user_weddings", force: :cascade do |t|
+    t.integer "wedding_id"
+    t.integer "user_id"
+    t.boolean "is_admin"
+    t.integer "accommodation_id"
+    t.integer "attending_status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -43,6 +94,33 @@ ActiveRecord::Schema.define(version: 2020_09_02_203725) do
     t.string "email"
     t.string "gender"
     t.integer "address_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "venues", force: :cascade do |t|
+    t.integer "venue_type"
+    t.string "venue_name"
+    t.string "street_address"
+    t.string "city"
+    t.string "country"
+    t.integer "zip"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "wedding_venues", force: :cascade do |t|
+    t.integer "wedding_id"
+    t.integer "venue_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "weddings", force: :cascade do |t|
+    t.string "registry_link"
+    t.date "wedding_date"
+    t.string "wedding_slug"
+    t.integer "wedding_theme_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

@@ -1,0 +1,2 @@
+class WeddingVenue < ApplicationRecord
+end

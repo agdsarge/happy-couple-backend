@@ -1,0 +1,2 @@
+class UserWedding < ApplicationRecord
+end
