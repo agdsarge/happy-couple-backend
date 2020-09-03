@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  main_color: MyString
+  dark_shadow: MyString
+  dark_accent: MyString
+  highlight: MyString
+  light_accent: MyString
+  font_family: MyString
+  theme_name: MyString
+
+two:
+  main_color: MyString
+  dark_shadow: MyString
+  dark_accent: MyString
+  highlight: MyString
+  light_accent: MyString
+  font_family: MyString
+  theme_name: MyString
