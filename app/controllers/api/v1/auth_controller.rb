@@ -1,12 +1,12 @@
 class Api::V1::AuthController < ApplicationController
-    #get '/login'
-    def create
+    
+    def login
         @user = User.find_by(email: params[:email])
         if @user && @user.authenticate(params[:password])
             token = encode_token({user_id: @user.id})
-            render json: {first_name: @user.first_name, token: token}
+            render json: {first_name: @user.first_name, token: token}, status: :ok
         else
-            render json: { error: true, message: 'Invalid email or password' }
+            render json: { error: true, message: 'Invalid email or password' }, status: 401
         end
     end
 
@@ -16,9 +16,9 @@ class Api::V1::AuthController < ApplicationController
     
         if @user.save
             token = encode_token({user_id: @user.id})
-            render json: {token: token, first_name: @user.first_name}
+            render json: {token: token, first_name: @user.first_name}, status: :ok
         else
-            render json: {error: true, message: 'Error registering user'}
+            render json: {error: true, message: 'Error registering user'}, status: 422
         end
     end
 
