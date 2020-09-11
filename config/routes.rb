@@ -4,7 +4,7 @@ Rails.application.routes.draw do
         namespace :v1 do
             post '/login', to: 'auth#login'
             post '/register', to: 'auth#register'
-            get '/date/:id', to: 'user#get_wedding_date'
+            get '/date', to: 'user#get_wedding_date'
         end
     end
 end
