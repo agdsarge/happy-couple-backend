@@ -5,6 +5,7 @@ Rails.application.routes.draw do
             post '/login', to: 'auth#login'
             post '/register', to: 'auth#register'
             get '/date', to: 'user#get_wedding_date'
+            post '/setup', to: 'wedding#create_new_wedding_from_wizard'
         end
     end
 end
