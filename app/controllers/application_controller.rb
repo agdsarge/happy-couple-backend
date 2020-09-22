@@ -14,10 +14,11 @@ class ApplicationController < ActionController::API
         #if valid return currentUser
 
         auth = request.headers['Authorization']
+        
         if auth
             auth = auth.split(' ').last
         end 
-
+        
         begin
             
             @decoded = decode_token(auth) # @decoded is a UserId
