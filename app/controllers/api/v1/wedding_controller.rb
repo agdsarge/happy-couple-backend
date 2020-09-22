@@ -13,7 +13,8 @@ class Api::V1::WeddingController < ApplicationController
         @wedding = Wedding.new(registry_link: general_details[:registryLink], wedding_date: general_details[:weddingDate], wedding_slug: general_details[:slug])
         @wedding.wedding_theme = @wedding_theme
         @wedding.save
-        @user_wedding = UserWedding.new(user: @current_user, wedding: @wedding, is_admin: true, attending_status: 1, accommodation_id: nil)
+
+        @user_wedding = UserWedding.new(wedding_id: @wedding.id, user_id: @current_user.id, is_admin: true, attending_status: 1, accommodation_id: nil)
         @user_wedding.save
 
         @reception_venue = Venue.find_or_create_by(venue_type: 1, venue_name: reception_details[:venueName], street_address: reception_details[:venueStreet], city: reception_details[:venueCity], country: reception_details[:venueCountry], zip: reception_details[:venueZipCode])
@@ -23,10 +24,6 @@ class Api::V1::WeddingController < ApplicationController
         @wedding_venue_reception.save
         @wedding_venue_ceremony = WeddingVenue.new(wedding: @wedding, venue:@ceremony_venue)
         @wedding_venue_ceremony.save
-
-        byebug
-       
-
         
         render json: {mesg: "test message in Rails", r1: general_details}
     end

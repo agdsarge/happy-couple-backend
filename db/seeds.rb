@@ -7,6 +7,11 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 WeddingTheme.destroy_all
+User.destroy_all
+Venue.destroy_all
+Wedding.destroy_all
+UserWedding.destroy_all
+WeddingVenue.destroy_all
 
 sunset = WeddingTheme.create(main_color: 'DDDDDD', dark_shadow: 'DDDDDD', dark_accent: 'DDDDDD', highlight: 'DDDDDD', light_accent: 'DDDDDD', font_family: 'Serif', theme_name: 'sunset')
 classic = WeddingTheme.create(main_color: '777777', dark_shadow: '777777', dark_accent: '777777', highlight: '777777', light_accent: '777777', font_family: 'Serif', theme_name: 'classic')
