@@ -7,7 +7,7 @@ class Api::V1::TodoController < ApplicationController
             wedding_todo = Todo.where("wedding_id = ? AND task_name = ?", params[:wedding_id], todo.task_name)
             if wedding_todo
                 if (wedding_todo.isCompleted != todo.isCompleted)
-                    wedding_todo.update(isCompleted: !todo.isCompleted)
+                    wedding_todo.update(isCompleted: todo.isCompleted)
                 end
             else
                 new_todo = Todo.new(wedding_id: params[:wedding_id], task_name: todo.task_name, isCompleted: todo.isCompleted )
