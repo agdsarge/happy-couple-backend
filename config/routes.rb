@@ -7,6 +7,7 @@ Rails.application.routes.draw do
             get '/date', to: 'user#get_wedding_date'
             post '/setup', to: 'wedding#create_new_wedding_from_wizard'
             post '/todos', to: 'todo#update'
+            get '/weddings/:id/todos', to: 'wedding#todos'
         end
     end
 end

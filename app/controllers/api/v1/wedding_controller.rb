@@ -28,6 +28,11 @@ class Api::V1::WeddingController < ApplicationController
         render json: {mesg: "test message in Rails", r1: general_details}
     end
 
+    def todos
+        wedding_todos = ToDo.where("wedding_id = ?",params[:id])
+        render json: {message: "Success", list: wedding_todos}, status: :ok
+    end
+
     private
     def general_params(*args) 
         params.require(:general).permit(*args)

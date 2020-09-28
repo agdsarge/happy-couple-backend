@@ -6,7 +6,7 @@ class Api::V1::TodoController < ApplicationController
         returnList = []
         list = params[:todoList]
         list.each do |todo| 
-            wedding_todo = ToDo.where("wedding_id = ? AND todo_name = ?", params[:wedding_id], todo[:task])
+            wedding_todo = ToDo.where("wedding_id = ? AND todo_name = ?", params[:wedding_id], todo[:todo_name])
             
             if (wedding_todo.size > 0 )
                 
@@ -18,7 +18,7 @@ class Api::V1::TodoController < ApplicationController
                 end
 
             else
-                new_todo = ToDo.new(wedding_id: params[:wedding_id].to_i, todo_name: todo[:task], isCompleted: todo[:isCompleted] )
+                new_todo = ToDo.new(wedding_id: params[:wedding_id].to_i, todo_name: todo[:todo_name], isCompleted: todo[:isCompleted] )
                 new_todo.save()
                 returnList << new_todo
             end
