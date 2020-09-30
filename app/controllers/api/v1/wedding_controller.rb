@@ -8,7 +8,7 @@ class Api::V1::WeddingController < ApplicationController
         reception_details = reception_params(:venueName, :venueStreet, :venueCity, :venueState, :venueCountry, :venueZipCode)
         ceremony_details = ceremony_params(:venueName, :venueStreet, :venueCity, :venueState, :venueCountry, :venueZipCode)
         
-        # byebug
+        byebug
         @wedding_theme = WeddingTheme.find_by(theme_name: general_details[:theme])
         @wedding = Wedding.new(registry_link: general_details[:registryLink], wedding_date: general_details[:weddingDate], wedding_slug: general_details[:slug])
         @wedding.wedding_theme = @wedding_theme
@@ -28,6 +28,32 @@ class Api::V1::WeddingController < ApplicationController
         render json: {mesg: "test message in Rails", r1: general_details}
     end
 
+    def add_guests
+        guests_to_add = params[:guestList]
+        @wedding = Wedding.find(params[:weddingID])
+        
+        guests_to_add.each do |gst|
+            specific_guest = gst[0].to_sym #
+            guest_info = guest_params(specific_guest, :firstName, :lastName, :email, :role)
+            #create guest
+            # send over wedding info :)
+            new_guest = Guest.find_or_create_by(wedding: @wedding, first_name: guest_info[:firstName], last_name: guest_info[:lastName], email: guest_info[:email], role: guest_info[:role])
+            new_guest.save
+            if new_guest.email != ''
+                @user = User.find_by(first_name: guest_info[:firstName], last_name: guest_info[:lastName], email: guest_info[:email])
+                unless @user
+                    @user = User.new(first_name: guest_info[:firstName], last_name: guest_info[:lastName], email: guest_info[:email], password: @wedding.wedding_slug)
+                    @user.save
+                end
+            end    
+        end
+        render json: {mesg: "GUESTS ADDED!"}
+
+        # iterate through guests to add
+        # do a strong params, where each param refers to a primitive value
+
+    end
+
     private
     def general_params(*args) 
         params.require(:general).permit(*args)
@@ -40,6 +66,17 @@ class Api::V1::WeddingController < ApplicationController
     def ceremony_params(*args)
         params.require(:ceremony).permit(*args)
     end
+
+    def guest_params(specific_guest, *args)
+
+        params.require(:guestList).require(specific_guest).permit(*args)
+    end
+
+    # def guest_1_params(*args)
+    #     params.require(:guestList).require(:guest1).permit(*args)
+    # end
+
+
 end
 
 # {, 

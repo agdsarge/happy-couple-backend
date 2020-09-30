@@ -7,6 +7,8 @@ class Wedding < ApplicationRecord
 
     has_many :albums
     has_many :invitations
+    has_many :guests
+
     
     belongs_to :wedding_theme
 
