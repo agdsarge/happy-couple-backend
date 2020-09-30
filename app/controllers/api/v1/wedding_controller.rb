@@ -49,6 +49,7 @@ class Api::V1::WeddingController < ApplicationController
                     @user = User.new(first_name: guest_info[:firstName], last_name: guest_info[:lastName], email: guest_info[:email], password: @wedding.wedding_slug)
                     @user.save
                 end
+                @uw = UserWedding.find_or_create_by(user: @user, wedding: @wedding)
             end    
         end
         render json: {mesg: "GUESTS ADDED!"}
