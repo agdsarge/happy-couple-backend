@@ -4,10 +4,10 @@ Rails.application.routes.draw do
         namespace :v1 do
             post '/login', to: 'auth#login'
             post '/register', to: 'auth#register'
-            get '/date', to: 'user#get_wedding_date'
             post '/setup', to: 'wedding#create_new_wedding_from_wizard'
             post '/todos', to: 'todo#update'
             get '/weddings/:id/todos', to: 'wedding#todos'
+            post '/add_guests', to: 'wedding#add_guests'
         end
     end
 end
