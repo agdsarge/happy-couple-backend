@@ -12,6 +12,7 @@ Rails.application.routes.draw do
             get '/weddings/:id/todos', to: 'wedding#todos'
             get '/weddings/:slug', to: 'wedding#show'
             post '/add_guests', to: 'wedding#add_guests'
+            get 'weddings/:id/guests', to: 'wedding#get_guests'
         end
     end
 end
