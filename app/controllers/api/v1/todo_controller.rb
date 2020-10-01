@@ -5,6 +5,7 @@ class Api::V1::TodoController < ApplicationController
     def update
         returnList = []
         list = params[:todoList]
+        # byebug
         list.each do |todo| 
             wedding_todo = ToDo.where("wedding_id = ? AND todo_name = ?", params[:wedding_id], todo[:todo_name])
             
@@ -24,7 +25,27 @@ class Api::V1::TodoController < ApplicationController
             end
         end 
 
-        render json: {message: "success", list: returnList}, status: :ok
+        render json: {message: "Success", list: returnList}, status: :ok
     end
+
+    def edit
+        modified_todo = ToDo.find(params[:id])
+        if modified_todo.update(todo_name: params[:new_todo_name])
+            
+            render json: {msg: "Success", todo: modified_todo}, status: :ok
+        else
+            render json: {msg: "Error updating todo", error: true}, status: 422
+        end
+    end
+
+    def destroy
+        deleted_todo = ToDo.find(params[:id])
+        if deleted_todo.destroy
+            render json: {msg: "Success", todo: deleted_todo}, status: :ok
+        else
+            render json: {msg: "Error deleting todo", error: true}, status: 422
+        end
+    end
+
 
 end
