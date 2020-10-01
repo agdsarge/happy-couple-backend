@@ -10,6 +10,7 @@ Rails.application.routes.draw do
             patch '/todos/:id', to: 'todo#edit'
             delete '/todos/:id', to: 'todo#destroy'
             get '/weddings/:id/todos', to: 'wedding#todos'
+            get '/weddings/:slug', to: 'wedding#show'
             post '/add_guests', to: 'wedding#add_guests'
         end
     end

@@ -1,5 +1,5 @@
 class Api::V1::WeddingController < ApplicationController
-    before_action :authorize_request
+    before_action :authorize_request, except: [:show]
 
     def create_new_wedding_from_wizard
         # the before_action of :authorize request gives us a @curent_user, which is a User model
@@ -10,7 +10,7 @@ class Api::V1::WeddingController < ApplicationController
         
         byebug
         @wedding_theme = WeddingTheme.find_by(theme_name: general_details[:theme])
-        @wedding = Wedding.new(registry_link: general_details[:registryLink], wedding_date: general_details[:weddingDate], wedding_slug: general_details[:slug])
+        @wedding = Wedding.new(registry_link: general_details[:registryLink], wedding_date: general_details[:weddingDate], slug: general_details[:slug])
         @wedding.wedding_theme = @wedding_theme
         @wedding.save
 
@@ -46,7 +46,7 @@ class Api::V1::WeddingController < ApplicationController
             if new_guest.email != ''
                 @user = User.find_by(first_name: guest_info[:firstName], last_name: guest_info[:lastName], email: guest_info[:email])
                 unless @user
-                    @user = User.new(first_name: guest_info[:firstName], last_name: guest_info[:lastName], email: guest_info[:email], password: @wedding.wedding_slug)
+                    @user = User.new(first_name: guest_info[:firstName], last_name: guest_info[:lastName], email: guest_info[:email], password: @wedding.slug)
                     @user.save
                 end
                 @uw = UserWedding.find_or_create_by(user: @user, wedding: @wedding)
@@ -57,6 +57,12 @@ class Api::V1::WeddingController < ApplicationController
         # iterate through guests to add
         # do a strong params, where each param refers to a primitive value
 
+    end
+
+    def show
+        # byebug
+        wedding = Wedding.find_by(slug: params[:slug])
+        render json: {msg: 'success', wedding: wedding}
     end
 
     private
