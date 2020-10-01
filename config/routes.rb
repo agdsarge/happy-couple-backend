@@ -11,6 +11,7 @@ Rails.application.routes.draw do
             delete '/todos/:id', to: 'todo#destroy'
             get '/weddings/:id/todos', to: 'wedding#todos'
             post '/add_guests', to: 'wedding#add_guests'
+            get 'weddings/:id/guests', to: 'wedding#get_guests'
         end
     end
 end

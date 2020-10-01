@@ -32,6 +32,7 @@ class Api::V1::WeddingController < ApplicationController
         wedding_todos = ToDo.where("wedding_id = ?",params[:id])
         render json: {message: "Success", list: wedding_todos}, status: :ok
     end
+
     def add_guests
         guests_to_add = params[:guestList]
         @wedding = Wedding.find(params[:weddingID])
@@ -53,10 +54,11 @@ class Api::V1::WeddingController < ApplicationController
             end    
         end
         render json: {mesg: "GUESTS ADDED!"}
+    end
 
-        # iterate through guests to add
-        # do a strong params, where each param refers to a primitive value
-
+    def get_guests
+        @guests = Guest.where("wedding_id = ?",params[:id])
+        render json: {message: "Success", list: @guests}, status: :ok
     end
 
     private
