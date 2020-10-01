@@ -2,6 +2,16 @@ class Api::V1::TodoController < ApplicationController
 
     before_action :authorize_request
     
+    def create 
+        new_todo = ToDo.new(wedding_id: params[:w_id].to_i, todo_name: params[:new_todo], isCompleted: false )
+        
+        if new_todo.save()          
+            render json: {msg: "Success", todo: new_todo}, status: :ok
+        else
+            render json: {msg: "Error updating todo", error: true}, status: 422
+        end
+    end
+
     def update
         returnList = []
         list = params[:todoList]

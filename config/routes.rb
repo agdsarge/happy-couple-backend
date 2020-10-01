@@ -5,6 +5,7 @@ Rails.application.routes.draw do
             post '/login', to: 'auth#login'
             post '/register', to: 'auth#register'
             post '/setup', to: 'wedding#create_new_wedding_from_wizard'
+            post '/todos/new', to: 'todo#create'
             post '/todos', to: 'todo#update'
             patch '/todos/:id', to: 'todo#edit'
             delete '/todos/:id', to: 'todo#destroy'
