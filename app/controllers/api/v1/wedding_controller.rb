@@ -91,31 +91,3 @@ class Api::V1::WeddingController < ApplicationController
 
 
 end
-
-# {, 
-# "general"=>{
-#     "weddingDate"=>nil, 
-#     "partnerOne"=>nil, 
-#     "partnerTwo"=>nil, 
-#     "theme"=>"1", 
-#     "fontFamily"=>"1", 
-#     "slug"=>nil, 
-#     "registryLink"=>nil
-# }, 
-# "reception"=>{
-#     "venueName"=>nil, 
-#     "venueStreet"=>nil, 
-#     "venueCity"=>nil, 
-#     "venueState"=>nil, 
-#     "venueCountry"=>nil, 
-#     "venueZipCode"=>"HELLO"
-# }, 
-# "ceremony"=>{
-#     "venueName"=>nil, 
-#     "venueStreet"=>nil, 
-#     "venueCity"=>nil, 
-#     "venueState"=>nil, 
-#     "venueCountry"=>nil, 
-#     "venueZipCode"=>nil}, 
-# "wedding"=>{}
-# }
