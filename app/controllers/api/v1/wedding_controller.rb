@@ -53,7 +53,7 @@ class Api::V1::WeddingController < ApplicationController
                 @uw = UserWedding.find_or_create_by(user: @user, wedding: @wedding)
             end    
         end
-        render json: {mesg: "GUESTS ADDED!"}
+        render json: {message: "GUESTS ADDED!", list: @wedding.guests}, status: :ok
     end
 
     def get_guests
@@ -84,10 +84,5 @@ class Api::V1::WeddingController < ApplicationController
 
         params.require(:guestList).require(specific_guest).permit(*args)
     end
-
-    # def guest_1_params(*args)
-    #     params.require(:guestList).require(:guest1).permit(*args)
-    # end
-
 
 end
