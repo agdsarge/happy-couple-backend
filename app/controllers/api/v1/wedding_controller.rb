@@ -64,7 +64,8 @@ class Api::V1::WeddingController < ApplicationController
     def show
         # byebug
         wedding = Wedding.find_by(slug: params[:slug])
-        render json: {msg: 'success', wedding: wedding}
+        theme = wedding.wedding_theme
+        render json: {msg: 'success', wedding: wedding, theme: theme}
     end
 
     private
