@@ -68,6 +68,14 @@ class Api::V1::WeddingController < ApplicationController
         render json: {msg: 'success', wedding: wedding, theme: theme}
     end
 
+    def rsvp
+
+    end
+
+    def attending
+
+    end
+
     private
     def general_params(*args) 
         params.require(:general).permit(*args)
