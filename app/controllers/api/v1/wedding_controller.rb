@@ -1,5 +1,5 @@
 class Api::V1::WeddingController < ApplicationController
-    before_action :authorize_request, except: [:show]
+    before_action :authorize_request, except: [:show, :attending]
 
     def create_new_wedding_from_wizard
         # the before_action of :authorize request gives us a @curent_user, which is a User model
@@ -68,11 +68,14 @@ class Api::V1::WeddingController < ApplicationController
         render json: {msg: 'success', wedding: wedding, theme: theme}
     end
 
-    def rsvp
-
-    end
-
     def attending
+        user = User.find_by(email: params[:email])
+        if user == nil 
+            render json: {found: false}, status: 404
+        else
+            user_wedding = UserWedding.where("wedding_id = ? AND user_id = ?", params[:id].to_i, user.id) 
+            render json: {found: true, uw: user_wedding[0]}, status: :ok
+        end
 
     end
 
