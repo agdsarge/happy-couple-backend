@@ -18,6 +18,9 @@ Rails.application.routes.draw do
             get '/guests/', to: 'guest#index'
             delete '/guests/:id', to: 'guest#destroy'
             patch '/guests/:id', to: 'guest#edit'
+
+            post '/invitations/:id', to: 'invitation#create'
+            patch '/invitations/:id', to: 'invitation#edit'
             
         end
     end

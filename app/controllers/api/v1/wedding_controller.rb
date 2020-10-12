@@ -93,7 +93,6 @@ class Api::V1::WeddingController < ApplicationController
     end
 
     def guest_params(specific_guest, *args)
-
         params.require(:guestList).require(specific_guest).permit(*args)
     end
 
