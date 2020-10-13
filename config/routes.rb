@@ -21,6 +21,7 @@ Rails.application.routes.draw do
 
             post '/invitations/:id', to: 'invitation#create'
             patch '/invitations/:id', to: 'invitation#edit'
+            get '/weddings/:id/invitation', to: 'wedding#invitation'
             
         end
     end
