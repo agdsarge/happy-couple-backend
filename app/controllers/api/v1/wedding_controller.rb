@@ -7,13 +7,15 @@ class Api::V1::WeddingController < ApplicationController
         general_details = general_params(:weddingDate, :partnerOne, :partnerTwo, :theme, :slug, :registryLink)
         reception_details = reception_params(:venueName, :venueStreet, :venueCity, :venueState, :venueCountry, :venueZipCode)
         ceremony_details = ceremony_params(:venueName, :venueStreet, :venueCity, :venueState, :venueCountry, :venueZipCode)
-        
-        byebug
+
         @wedding_theme = WeddingTheme.find_by(theme_name: general_details[:theme])
         @wedding = Wedding.new(registry_link: general_details[:registryLink], wedding_date: general_details[:weddingDate], slug: general_details[:slug])
         @wedding.wedding_theme = @wedding_theme
         @wedding.save
 
+        @new_album = Album.new(wedding_id: @wedding.id, title: "new uploads", is_bio: false)
+        @new_album.save
+        
         @user_wedding = UserWedding.new(wedding_id: @wedding.id, user_id: @current_user.id, is_admin: true, attending_status: 1, accommodation_id: nil)
         @user_wedding.save
 
