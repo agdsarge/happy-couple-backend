@@ -8,6 +8,8 @@ class Api::V1::WeddingController < ApplicationController
         reception_details = reception_params(:venueName, :venueStreet, :venueCity, :venueState, :venueCountry, :venueZipCode)
         ceremony_details = ceremony_params(:venueName, :venueStreet, :venueCity, :venueState, :venueCountry, :venueZipCode)
 
+        
+        # byebug
         @wedding_theme = WeddingTheme.find_by(theme_name: general_details[:theme])
         @wedding = Wedding.new(registry_link: general_details[:registryLink], wedding_date: general_details[:weddingDate], slug: general_details[:slug])
         @wedding.wedding_theme = @wedding_theme
