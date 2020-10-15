@@ -23,7 +23,7 @@ Rails.application.routes.draw do
             patch '/invitations/:id', to: 'invitation#edit'
             get '/weddings/:id/invitation', to: 'wedding#invitation'
 
-            post '/photos/:id', to: 'photos#create'
+            post '/photos', to: 'photos#create'
             # get '/weddings/:id/photos', to: 'wedding#photos'
             
         end
