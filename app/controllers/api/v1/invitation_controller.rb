@@ -54,26 +54,11 @@ class Api::V1::InvitationController < ApplicationController
             line_data['fontSize'] = line_style[:fontSize]
             line_data['color'] = line_style[:color]
             line_data['textAlign'] = line_style[:textAlign]
-            
+
             sl.update(line_data)
             sl.save
         end
-        # lines = params[:lines]
-        # lines.keys.each do |num|
-        #     line_sym = num.to_sym
-        #     line_text = line_text_param(line_sym, :text)
-        #     line_style = line_style_params(line_sym, :fontFamily, :fontSize, :color, :textAlign)
-            
-        #     line_data = {}
-
-        #     line_data['line' + num + '_text'] = line_text[:text]
-        #     line_data['line' + num + '_font'] = line_style[:fontFamily]
-        #     line_data['line' + num + '_size'] = line_style[:fontSize]
-        #     line_data['line' + num + '_color'] = line_style[:color]
-        #     line_data['line' + num + '_align'] = line_style[:textAlign]
-            
-        #     @invitation.update(line_data)
-        # end
+     
         if @invitation.save
             render json: {msg: 'You have updated this invtation!'}, status: 200
         else
