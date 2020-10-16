@@ -38,11 +38,11 @@ class Api::V1::WeddingController < ApplicationController
     end
 
     def invitation
-        @invitation = Invitation.where("wedding_id = ?", params[:id])
+        @invitation = Invitation.where("wedding_id = ?", params[:id]).last
         if @invitation
-            render json: {message: "Success", invitation: @invitation.last}, status: :ok
+            render json: @invitation, status: :ok
         else
-            render json: {message: "No Invitation created yet", invitation: false}, status: :ok
+            render json: {message: "No Invitation created yet", error: true}, status: :ok
         end
     end
 
