@@ -24,6 +24,8 @@ Rails.application.routes.draw do
             get '/weddings/:id/invitation', to: 'wedding#invitation'
 
             post '/photos', to: 'photos#create'
+            get '/photos', to: 'photos#index'
+            get '/test', to: 'photos#tester'
             # get '/weddings/:id/photos', to: 'wedding#photos'
             
         end
