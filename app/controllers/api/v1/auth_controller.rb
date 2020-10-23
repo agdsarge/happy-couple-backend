@@ -7,7 +7,9 @@ class Api::V1::AuthController < ApplicationController
 
             wedding_list = @user.weddings.map do |wedding| 
                 is_administrator = UserWedding.where('wedding_id = ? AND user_id = ?', wedding.id, @user.id).first
-                {wedding: wedding, is_admin: is_administrator[:is_admin] }
+                albums = Album.where(wedding_id: wedding.id).pluck(:id, :title)
+                album_hash_array = albums.map {|arr| {id: arr[0], title: arr[1]}}
+                {wedding: wedding, albums: album_hash_array, is_admin: is_administrator[:is_admin] }
             end
             render json: {first_name: @user.first_name, token: token, weddingList: wedding_list}, status: :ok
         
