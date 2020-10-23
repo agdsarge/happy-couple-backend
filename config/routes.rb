@@ -24,7 +24,6 @@ Rails.application.routes.draw do
             get '/weddings/:id/invitation', to: 'wedding#invitation'
 
             post '/photos', to: 'photos#create'
-            get '/test', to: 'photos#loadpic'
             get '/photos', to: 'photos#index'
 
             get 'weddings/:id/albums', to: 'album#index'
@@ -33,6 +32,7 @@ Rails.application.routes.draw do
             patch '/albums/:id', to: 'album#update'
             delete 'albums/:id', to: 'album#destroy'
 
+            get '/test', to: 'photos#loadpic'
             # get '/weddings/:id/photos', to: 'wedding#photos'
             
         end

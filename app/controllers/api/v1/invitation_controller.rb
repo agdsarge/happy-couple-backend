@@ -17,12 +17,8 @@ class Api::V1::InvitationController < ApplicationController
             line_text = line_text_params(line_sym, :text)
             line_style = line_style_params(line_sym, :fontFamily, :fontSize, :color, :textAlign)
 
-            line_data = {}
-            line_data['text'] = line_text[:text]
-            line_data['fontFamily'] = line_style[:fontFamily]
-            line_data['fontSize'] = line_style[:fontSize]
-            line_data['color'] = line_style[:color]
-            line_data['textAlign'] = line_style[:textAlign]
+            line_data = {text: line_text[:text], fontFamily: line_style[:fontFamily], fontSize: line_style[:fontSize], color: line_style[:color], textAlign: line_style[:textAlign]}
+            
             sl.update(line_data)
             sl.save
         end
@@ -48,12 +44,7 @@ class Api::V1::InvitationController < ApplicationController
             line_text = line_text_params(line_sym, :text)
             line_style = line_style_params(line_sym, :fontFamily, :fontSize, :color, :textAlign)
 
-            line_data = {}
-            line_data['text'] = line_text[:text]
-            line_data['fontFamily'] = line_style[:fontFamily]
-            line_data['fontSize'] = line_style[:fontSize]
-            line_data['color'] = line_style[:color]
-            line_data['textAlign'] = line_style[:textAlign]
+            line_data = {text: line_text[:text], fontFamily: line_style[:fontFamily], fontSize: line_style[:fontSize], color: line_style[:color], textAlign: line_style[:textAlign]}
 
             sl.update(line_data)
             sl.save
