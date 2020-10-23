@@ -26,6 +26,13 @@ Rails.application.routes.draw do
             post '/photos', to: 'photos#create'
             get '/test', to: 'photos#loadpic'
             get '/photos', to: 'photos#index'
+
+            get 'weddings/:id/albums', to: 'album#index'
+            post '/albums', to: 'album#create'
+            get '/albums/:id', to: 'album#show'
+            patch '/albums/:id', to: 'album#update'
+            delete 'albums/:id', to: 'album#destroy'
+
             # get '/weddings/:id/photos', to: 'wedding#photos'
             
         end
