@@ -25,6 +25,7 @@ Rails.application.routes.draw do
 
             post '/photos', to: 'photos#create'
             get '/test', to: 'photos#loadpic'
+            get '/photos', to: 'photos#index'
             # get '/weddings/:id/photos', to: 'wedding#photos'
             
         end
