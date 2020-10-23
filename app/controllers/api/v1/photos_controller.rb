@@ -13,8 +13,8 @@ class Api::V1::PhotosController < ApplicationController
         i = 0
         while (i < params[:images].length)
             puts params[:images][i]
-            new_photo = Photo.create(album_id: @album.id, caption: params[:captions][i], image: params[:images[i]])
-            # byebug
+            
+            new_photo = Photo.create(album_id: @album.id, caption: params[:captions][i], image: params[:images][i])
             i += 1
         end
         render json: {msg: "success", error: false}, status: :ok
